@@ -1,0 +1,26 @@
+{
+  "name": "TDD com Java e JUnit",
+  "image": "mcr.microsoft.com/devcontainers/java:21",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-java-test",
+        "vscjava.vscode-maven",
+        "redhat.java",
+        "vscjava.vscode-java-debug",
+        "vscjava.vscode-java-dependency",
+        "visualstudioexptteam.vscodeintellicode",
+        "ryanluker.vscode-coverage-gutters"
+      ],
+      "settings": {
+        "java.test.defaultConfig": "default",
+        "java.configuration.updateBuildConfiguration": "automatic",
+        "editor.formatOnSave": true
+      }
+    }
+  },
+  "postCreateCommand": "mvn compile -q",
+  "forwardPorts": [],
+  "remoteUser": "vscode"
+}
