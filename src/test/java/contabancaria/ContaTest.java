@@ -122,7 +122,7 @@ class ContaTest {
 
     @Test
     void depositar_ContaInativa_LancaIllegalStateException() {
-        var conta = new Conta("Maria", 100);
+        var conta = new Conta("Maria", 0);
         conta.encerrar();
 
         assertThrows(IllegalStateException.class, () -> conta.depositar(50));
@@ -153,7 +153,7 @@ class ContaTest {
 
     @Test
     void sacar_ContaInativa_LancaIllegalStateException() {
-        var conta = new Conta("Maria", 100);
+        var conta = new Conta("Maria", 0);
         conta.encerrar();
 
         assertThrows(IllegalStateException.class, () -> conta.sacar(10));
@@ -207,7 +207,7 @@ class ContaTest {
 
     @Test
     void transferir_ContaOrigemInativa_LancaIllegalStateException() {
-        var origem = new Conta("Maria", 100);
+        var origem = new Conta("Maria", 0);
         var destino = new Conta("João", 100);
         origem.encerrar();
 
@@ -217,7 +217,7 @@ class ContaTest {
     @Test
     void transferir_ContaDestinoInativa_LancaIllegalStateException() {
         var origem = new Conta("Maria", 100);
-        var destino = new Conta("João", 100);
+        var destino = new Conta("João", 0);
         destino.encerrar();
 
         assertThrows(IllegalStateException.class, () -> origem.transferir(destino, 10));
@@ -243,7 +243,7 @@ class ContaTest {
     void encerrar_ComSaldo_LancaIllegalStateException() {
         var conta = new Conta("Maria", 100);
 
-        assertThrows(IllegalStateException.class, conta::encerrar);
+        assertThrows(IllegalStateException.class, () -> conta.encerrar());
     }
 
     @Test
@@ -251,6 +251,6 @@ class ContaTest {
         var conta = new Conta("Maria", 0);
         conta.encerrar();
 
-        assertThrows(IllegalStateException.class, conta::encerrar);
+        assertThrows(IllegalStateException.class, () -> conta.encerrar());
     }
 }

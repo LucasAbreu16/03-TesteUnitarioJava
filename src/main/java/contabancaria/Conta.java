@@ -54,7 +54,10 @@ public class Conta {
      */
     public void depositar(double valor) {
         // TODO: Implemente usando TDD
-        throw new UnsupportedOperationException();
+    if (valor <= 0) throw new IllegalArgumentException();
+    if (!ativa) throw new IllegalStateException();
+
+    saldo += valor;
     }
 
     /**
@@ -67,7 +70,11 @@ public class Conta {
      */
     public void sacar(double valor) {
         // TODO: Implemente usando TDD
-        throw new UnsupportedOperationException();
+    if (valor <= 0) throw new IllegalArgumentException();
+    if (!ativa) throw new IllegalStateException();
+    if (valor > saldo) throw new IllegalStateException();
+
+    saldo -= valor;
     }
 
     /**
@@ -80,7 +87,12 @@ public class Conta {
      */
     public void transferir(Conta destino, double valor) {
         // TODO: Implemente usando TDD
-        throw new UnsupportedOperationException();
+    if (valor <= 0) throw new IllegalArgumentException();
+    if (!this.ativa || !destino.ativa) throw new IllegalStateException();
+    if (valor > this.saldo) throw new IllegalStateException();
+
+    this.saldo -= valor;
+    destino.saldo += valor;
     }
 
     /**
@@ -92,6 +104,9 @@ public class Conta {
      */
     public void encerrar() {
         // TODO: Implemente usando TDD
-        throw new UnsupportedOperationException();
+    if (!ativa) throw new IllegalStateException();
+    if (saldo != 0) throw new IllegalStateException();
+
+    ativa = false;
     }
 }
